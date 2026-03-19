@@ -1,0 +1,35 @@
+name: framework-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint framework files
+        run: ./framework/scripts/lint_framework.sh .
+      - name: Install dry-run full
+        run: ./install/install.sh --profile full --dry-run
+      - name: Install dry-run minimal
+        run: ./install/install.sh --profile minimal --dry-run
+      - name: Smoke test install/uninstall
+        run: ./framework/scripts/smoke_test_install.sh .
+
+  release-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Release consistency check
+        run: ./framework/scripts/release_check.sh .
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          scandir: './install ./framework/scripts'
