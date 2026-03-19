@@ -25,6 +25,10 @@ A reusable, environment-level framework for consistent agentic development acros
 ~/.agents/framework/scripts/lint_framework.sh ~/.agents
 ```
 
+## Recommended default
+For environment-level personal use, install with `--profile full` by default.
+Use `minimal`/`core` only for debugging, constrained setups, or staged rollout.
+
 ## Installer options
 ```bash
 ./install/install.sh --help
@@ -67,3 +71,6 @@ This framework is meant to live in environment scope:
 - `~/.codex/AGENTS.md`
 
 Do not copy framework files into project repos by default.
+
+## Installation guide
+See [`HOW TO INSTALL.md`](HOW%20TO%20INSTALL.md) for copy/paste setup instructions for Codex/Claude Setup Script and normal terminals.
